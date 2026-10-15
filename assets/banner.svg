@@ -1,0 +1,163 @@
+<svg fill="none" viewBox="0 0 1200 360" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0d17" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#070a12" />
+    </linearGradient>
+
+    <!-- Glowing Accent Gradients -->
+    <linearGradient id="primaryGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <linearGradient id="badgeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.25" />
+    </linearGradient>
+
+    <radialGradient id="aurora" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3" />
+      <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Grid Filter -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" />
+    </pattern>
+
+    <filter id="blurFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" />
+    </filter>
+
+    <style>
+      .glow-orbit {
+        animation: rotateOrbit 16s linear infinite;
+        transform-origin: 980px 180px;
+      }
+      .pulse-pill {
+        animation: pulsePill 4s ease-in-out infinite alternate;
+      }
+      .float-card {
+        animation: floatCard 6s ease-in-out infinite alternate;
+      }
+      .wave-line {
+        stroke-dasharray: 8 6;
+        animation: dashWave 25s linear infinite;
+      }
+      .pulse-light {
+        animation: pulseGlow 5s ease-in-out infinite alternate;
+      }
+
+      @keyframes rotateOrbit {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes pulsePill {
+        0% { transform: translateY(0px); opacity: 0.85; }
+        100% { transform: translateY(-6px); opacity: 1; }
+      }
+      @keyframes floatCard {
+        0% { transform: translateY(0px); }
+        100% { transform: translateY(-10px); }
+      }
+      @keyframes dashWave {
+        from { stroke-dashoffset: 0; }
+        to { stroke-dashoffset: 500; }
+      }
+      @keyframes pulseGlow {
+        0% { opacity: 0.35; transform: scale(0.95); }
+        100% { opacity: 0.7; transform: scale(1.05); }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bgGradient)" rx="16" />
+  <rect width="100%" height="100%" fill="url(#grid)" rx="16" />
+
+  <!-- Ambient Glowing Aurora -->
+  <ellipse cx="600" cy="140" rx="450" ry="180" fill="url(#aurora)" class="pulse-light" />
+  <circle cx="1020" cy="90" r="140" fill="#3b82f6" opacity="0.12" filter="url(#blurFilter)" />
+  <circle cx="150" cy="270" r="160" fill="#8b5cf6" opacity="0.12" filter="url(#blurFilter)" />
+
+  <!-- Animated Background Wave Paths (Behind Content) -->
+  <g opacity="0.4">
+    <path class="wave-line" d="M -50 290 Q 250 200, 550 280 T 1150 210 T 1300 260" fill="none" stroke="#38bdf8" stroke-width="2" />
+    <path class="wave-line" d="M -50 220 Q 300 320, 650 210 T 1250 280" fill="none" stroke="#a855f7" stroke-width="1.5" />
+  </g>
+
+  <!-- Dynamic Radar / Evaluation Node Visual on the Right -->
+  <g transform="translate(940, 180)" class="float-card">
+    <!-- Concentric radar circles -->
+    <circle cx="0" cy="0" r="110" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" fill="none" />
+    <circle cx="0" cy="0" r="80" stroke="rgba(56,189,248,0.15)" stroke-width="1.5" fill="none" />
+    <circle cx="0" cy="0" r="50" stroke="rgba(168,85,247,0.2)" stroke-width="1.5" fill="none" />
+    <circle cx="0" cy="0" r="20" stroke="rgba(56,189,248,0.3)" stroke-width="1.5" fill="none" />
+
+    <!-- Radar Crosshair -->
+    <line x1="-120" y1="0" x2="120" y2="0" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+    <line x1="0" y1="-120" x2="0" y2="120" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+
+    <!-- Dynamic Score Polygon -->
+    <polygon points="0,-75 60,-35 45,55 -50,65 -65,-20" fill="rgba(99,102,241,0.2)" stroke="#818cf8" stroke-width="2" />
+    <circle cx="0" cy="-75" r="4" fill="#38bdf8" />
+    <circle cx="60" cy="-35" r="4" fill="#a855f7" />
+    <circle cx="45" cy="55" r="4" fill="#38bdf8" />
+    <circle cx="-50" cy="65" r="4" fill="#34d399" />
+    <circle cx="-65" cy="-20" r="4" fill="#f43f5e" />
+
+    <!-- Metric Labels around visual -->
+    <text x="0" y="-86" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="11" font-weight="600" fill="#94a3b8">Accuracy</text>
+    <text x="80" y="-30" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="11" font-weight="600" fill="#94a3b8">Robustness</text>
+    <text x="58" y="72" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="11" font-weight="600" fill="#94a3b8">RAG Triad</text>
+    <text x="-62" y="82" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="11" font-weight="600" fill="#94a3b8">Hallucination</text>
+    <text x="-80" y="-20" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="11" font-weight="600" fill="#94a3b8">Safety / RedTeam</text>
+  </g>
+
+  <!-- FOREGROUND: Content Area (Fixed, High Contrast, Guaranteed Legibility) -->
+  <g transform="translate(70, 75)">
+    <!-- Category Badge -->
+    <rect x="0" y="0" width="235" height="30" rx="15" fill="url(#badgeGlow)" stroke="rgba(56,189,248,0.4)" stroke-width="1" />
+    <circle cx="16" cy="15" r="5" fill="#38bdf8" />
+    <text x="30" y="20" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="12" font-weight="700" fill="#7dd3fc" letter-spacing="1">CURATED AI EVALUATION</text>
+
+    <!-- Main Title -->
+    <text x="0" y="85" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,sans-serif" font-size="44" font-weight="900" fill="#ffffff" letter-spacing="-0.5">
+      Awesome AI Model Evaluation
+    </text>
+
+    <!-- Subtitle / Mission Statement -->
+    <text x="0" y="125" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="18" font-weight="400" fill="#cbd5e1">
+      Benchmark Harnesses, LLM-as-a-Judge, RAG Triad, Safety &amp; Agentic System Evaluators
+    </text>
+
+    <!-- Key Pillars / Interactive Tags -->
+    <g transform="translate(0, 160)" class="pulse-pill">
+      <!-- Tag 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="130" height="34" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+        <text x="65" y="22" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="13" font-weight="600" fill="#38bdf8">⚡ Benchmark Suites</text>
+      </g>
+      <!-- Tag 2 -->
+      <g transform="translate(142, 0)">
+        <rect width="135" height="34" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+        <text x="67" y="22" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="13" font-weight="600" fill="#c084fc">⚖️ LLM-as-a-Judge</text>
+      </g>
+      <!-- Tag 3 -->
+      <g transform="translate(289, 0)">
+        <rect width="140" height="34" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+        <text x="70" y="22" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="13" font-weight="600" fill="#34d399">🔍 RAG &amp; Observability</text>
+      </g>
+      <!-- Tag 4 -->
+      <g transform="translate(441, 0)">
+        <rect width="135" height="34" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+        <text x="67" y="22" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="13" font-weight="600" fill="#f43f5e">🤖 Agent Trajectory</text>
+      </g>
+    </g>
+  </g>
+</svg>
